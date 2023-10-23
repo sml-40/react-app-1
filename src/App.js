@@ -9,7 +9,10 @@ function App() {
 	]);
 
 	const handleClick = (id) => {
-		setEvent(event.filter((event) => event.id !== id));
+		setEvent((prevEvent) => {
+			// we need to use a callback function to access the previous state of the event array incase the events are updated while the user is clicking the delete button. This will ensure that the correct event is deleted
+			return prevEvent.filter((event) => event.id !== id);
+		}); // this will return a new array with all the events that don't match the id of the event that was clicked
 	};
 
 	return (
