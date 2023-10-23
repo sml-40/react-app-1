@@ -9,7 +9,7 @@ function App() {
 	]);
 
 	const handleClick = (id) => {
-		console.log("ID:", id);
+		setEvent(event.filter((event) => event.id !== id));
 	};
 
 	return (
