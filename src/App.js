@@ -8,7 +8,9 @@ function App() {
 		{ title: "Race on moo moo farm", id: 3 },
 	]);
 
-	const handleClick = (id) => {};
+	const handleClick = (id) => {
+		console.log("ID:", id);
+	};
 
 	return (
 		<div className="App">
@@ -17,7 +19,8 @@ function App() {
 					<h2>{event.title}</h2>
 					<button
 						type="button"
-						onClick={handleClick(event.id)}>
+						onClick={() => handleClick(event.id)}>
+						{/*	onClick={handleClick(event.id)}> // this will call the function immediately whenthe page initially renders, so we need to surround it with an anonymous arrow function*/}
 						Delete Event
 					</button>
 				</div>
