@@ -1,3 +1,16 @@
+// This is the main component that will be rendered to the DOM
+// This component will render the events and the hide/show buttons
+// This component will also handle the logic for hiding and showing the events
+// This component will also handle the logic for deleting an event
+// Pseudo code:
+// 1. Create a state variable to store the events
+// 2. Create a state variable to store whether the events are being shown or hidden
+// 3. Create elements to render the events and the hide/show buttons
+// 4. Create a function to handle the logic for hiding and showing the events
+// 5. Create a function to handle the logic for deleting an event
+// 6. Pass the functions to the appropriate elements by using the onClick attribute and an anonymous arrow function to prevent the function from being called immediately when the page renders
+// 7. Pass the state variable to the appropriate elements by using the logical && operator to only render the elements if the state variable is true
+
 import "./App.css";
 import { useState } from "react";
 
