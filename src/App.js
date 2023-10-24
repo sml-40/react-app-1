@@ -12,8 +12,9 @@
 // 7. Pass the state variable to the appropriate elements by using the logical && operator to only render the elements if the state variable is true
 
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Title from "./Components/Title";
+import Modal from "./Components/Modal";
 
 function App() {
 	const [showEvents, setShowEvents] = useState(true); // this will be used to toggle the events on and off
@@ -35,42 +36,50 @@ function App() {
 	const subtitle = "All the latest events in Mario Kingdom";
 
 	return (
-		<div className="App">
-			<Title
-				title="events in your area"
-				subtitle={subtitle}
-			/>
-			{showEvents && ( // this 'logical &&' will only render the hide button if showEvents is true i.e. if the events are being shown
-				<div>
-					<button
-						type=""
-						onClick={() => setShowEvents(false)}>
-						Hide Events
-					</button>
-				</div>
-			)}
-			{!showEvents && ( // this 'logical &&' will only render the show button if showEvents is false i.e. if the events are being hidden
-				<div>
-					<button
-						type=""
-						onClick={() => setShowEvents(true)}>
-						Show Events
-					</button>
-				</div>
-			)}
-			{showEvents && // this 'logical &&' will only render the events if showEvents is true
-				event.map((event) => (
-					<div key={event.id}>
-						<h2>{event.title}</h2>
+		<>
+			<div className="App">
+				<Title
+					title="events in your area"
+					subtitle={subtitle}
+				/>
+				<br />
+				<Title
+					title="Another Title"
+					subtitle="Another Subtitle"
+				/>
+				{showEvents && ( // this 'logical &&' will only render the hide button if showEvents is true i.e. if the events are being shown
+					<div>
 						<button
-							type="button"
-							onClick={() => handleClick(event.id)}>
-							{/*	onClick={handleClick(event.id)}> // this will call the function immediately whenthe page initially renders, so we need to surround it with an anonymous arrow function*/}
-							Delete Event
+							type=""
+							onClick={() => setShowEvents(false)}>
+							Hide Events
 						</button>
 					</div>
-				))}
-		</div>
+				)}
+				{!showEvents && ( // this 'logical &&' will only render the show button if showEvents is false i.e. if the events are being hidden
+					<React.Fragment>
+						<button
+							type=""
+							onClick={() => setShowEvents(true)}>
+							Show Events
+						</button>
+					</React.Fragment>
+				)}
+				{showEvents && // this 'logical &&' will only render the events if showEvents is true
+					event.map((event) => (
+						<React.Fragment key={event.id}>
+							<h2>{event.title}</h2>
+							<button
+								type="button"
+								onClick={() => handleClick(event.id)}>
+								{/*	onClick={handleClick(event.id)}> // this will call the function immediately whenthe page initially renders, so we need to surround it with an anonymous arrow function*/}
+								Delete Event
+							</button>
+						</React.Fragment>
+					))}
+				<Modal />
+			</div>
+		</>
 	);
 }
 
