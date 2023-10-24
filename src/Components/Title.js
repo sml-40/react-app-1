@@ -1,9 +1,9 @@
-export default function Title() {
+export default function Title(props) {
 	return (
 		<>
-			<h1 className="title">Mario Kingdom Events</h1>
+			<h1 className="title">{props.title}</h1>
 			<br />
-			<h2 className="subtitle">All the latest events in Mario Kingdom</h2>
+			<h2 className="subtitle">{props.subtitle}</h2>
 		</>
 	);
 }

@@ -13,6 +13,7 @@
 
 import "./App.css";
 import { useState } from "react";
+import Title from "./Components/Title";
 
 function App() {
 	const [showEvents, setShowEvents] = useState(true); // this will be used to toggle the events on and off
@@ -22,9 +23,7 @@ function App() {
 		{ title: "Race on moo moo farm", id: 3 },
 	]);
 
-	{
-		/*console.log(showEvents); // this will log the value of showEvents to the console*/
-	}
+	// console.log(showEvents); // this will log the value of showEvents to the console
 
 	const handleClick = (id) => {
 		setEvent((prevEvent) => {
@@ -33,8 +32,14 @@ function App() {
 		}); // this will return a new array with all the events that don't match the id of the event that was clicked
 	};
 
+	const subtitle = "All the latest events in Mario Kingdom";
+
 	return (
 		<div className="App">
+			<Title
+				title="events in your area"
+				subtitle={subtitle}
+			/>
 			{showEvents && ( // this 'logical &&' will only render the hide button if showEvents is true i.e. if the events are being shown
 				<div>
 					<button
