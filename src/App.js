@@ -15,10 +15,12 @@ import "./App.css";
 import React, { useState } from "react";
 import Title from "./Components/Title";
 import Modal from "./Components/Modal";
+import EventList from "./Components/EventList";
 
 function App() {
+	const [showModal, setShowModal] = useState(false); // this will be used to toggle the modal on and off
 	const [showEvents, setShowEvents] = useState(true); // this will be used to toggle the events on and off
-	const [event, setEvent] = useState([
+	const [events, setEvents] = useState([
 		{ title: "Mario's birthday bash", id: 1 },
 		{ title: "Bowser's live stream", id: 2 },
 		{ title: "Race on moo moo farm", id: 3 },
@@ -27,17 +29,28 @@ function App() {
 	// console.log(showEvents); // this will log the value of showEvents to the console
 
 	const handleClick = (id) => {
-		setEvent((prevEvent) => {
+		setEvents((prevEvents) => {
 			// we need to use a callback function to access the previous state of the event array incase the events are updated while the user is clicking the delete button. This will ensure that the correct event is deleted
-			return prevEvent.filter((event) => event.id !== id);
+			return prevEvents.filter((event) => event.id !== id);
 		}); // this will return a new array with all the events that don't match the id of the event that was clicked
 	};
+
+	const handleClose = () => {
+		setShowModal(false); // this will set the showModal state variable to false, which will hide the modal
+	};
+
+	console.log(showModal);
 
 	const subtitle = "All the latest events in Mario Kingdom";
 
 	return (
 		<>
 			<div className="App">
+				<button onClick={() => setShowModal(true)}>
+					View Terms & Conditions
+				</button>
+				<br />
+
 				<Title
 					title="events in your area"
 					subtitle={subtitle}
@@ -47,6 +60,7 @@ function App() {
 					title="Another Title"
 					subtitle="Another Subtitle"
 				/>
+
 				{showEvents && ( // this 'logical &&' will only render the hide button if showEvents is true i.e. if the events are being shown
 					<div>
 						<button
@@ -65,19 +79,28 @@ function App() {
 						</button>
 					</React.Fragment>
 				)}
-				{showEvents && // this 'logical &&' will only render the events if showEvents is true
-					event.map((event) => (
-						<React.Fragment key={event.id}>
-							<h2>{event.title}</h2>
-							<button
-								type="button"
-								onClick={() => handleClick(event.id)}>
-								{/*	onClick={handleClick(event.id)}> // this will call the function immediately whenthe page initially renders, so we need to surround it with an anonymous arrow function*/}
-								Delete Event
-							</button>
-						</React.Fragment>
-					))}
-				<Modal />
+				{showEvents && ( // this 'logical &&' will only render the events if showEvents is true
+					<EventList
+						handleClick={handleClick}
+						events={events}
+					/>
+				)}
+				{/* <Modal>
+					<h2>10% Off Coupon Code!!</h2>
+					<p>Use the code NINJA10 at the checkout.</p>
+				</Modal> */}
+
+				{showModal && (
+					<Modal handleClose={handleClose}>
+						<h2>Terms and Conditions</h2>
+						<p>
+							ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Incidunt modi consequatur accusantium voluptatum vero inventore
+							corrupti vel architecto rem possimus! Officiis pariatur suscipit
+							alias nesciunt aliquam voluptates sed voluptatibus in?
+						</p>
+					</Modal>
+				)}
 			</div>
 		</>
 	);
