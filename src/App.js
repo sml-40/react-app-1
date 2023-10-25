@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import Title from "./Components/Title";
 import Modal from "./Components/Modal";
 import EventList from "./Components/EventList";
+import NewEventForm from "./Components/NewEventForm";
 
 function App() {
 	const [showModal, setShowModal] = useState(false); // this will be used to toggle the modal on and off
@@ -46,11 +47,6 @@ function App() {
 	return (
 		<>
 			<div className="App">
-				<button onClick={() => setShowModal(true)}>
-					View Terms & Conditions
-				</button>
-				<br />
-
 				<Title
 					title="events in your area"
 					subtitle={subtitle}
@@ -94,15 +90,12 @@ function App() {
 					<Modal
 						handleClose={handleClose}
 						isSalesModal={false}>
-						<h2>Terms and Conditions</h2>
-						<p>
-							ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Incidunt modi consequatur accusantium voluptatum vero inventore
-							corrupti vel architecto rem possimus! Officiis pariatur suscipit
-							alias nesciunt aliquam voluptates sed voluptatibus in?
-						</p>
+						<NewEventForm />
 					</Modal>
 				)}
+				<div>
+					<button onClick={() => setShowModal(true)}>Add New Event</button>
+				</div>
 			</div>
 		</>
 	);
