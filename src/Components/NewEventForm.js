@@ -5,10 +5,12 @@ import React, { useState } from "react";
 export default function NewEventForm({ addEvent }) {
 	const [title, setTitle] = useState("");
 	const [date, setDate] = useState("");
+	const [location, setLocation] = useState("Mario Kingdom");
 
 	const resetForm = () => {
 		setTitle("");
 		setDate("");
+		setLocation("Mario Kingdom");
 	};
 
 	const handleSubmit = (e) => {
@@ -17,6 +19,7 @@ export default function NewEventForm({ addEvent }) {
 		const event = {
 			title: title,
 			date: date,
+			location: location,
 			id: Math.floor(Math.random() * 10000),
 		};
 		console.log(event);
@@ -48,6 +51,14 @@ export default function NewEventForm({ addEvent }) {
 					onChange={(e) => setDate(e.target.value)}
 					value={date}
 				/>
+			</label>
+			<label>
+				<span>Location:</span>
+				<select onChange={(e) => setLocation(e.target.value)}>
+					<option value="Mario Kingdom">Mario Kingdom</option>
+					<option value="Bowser's Castle">Bowser's Castle</option>
+					<option value="Peaches Palace">Peaches Palace</option>
+				</select>
 			</label>
 			<button>Submit</button>
 		</form>

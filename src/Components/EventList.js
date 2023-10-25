@@ -11,6 +11,9 @@ export default function EventList({ events, handleClick }) {
 					key={event.id}>
 					<h2>{event.title}</h2>
 					<p>{event.description}</p>
+					<p>
+						{event.location} - {event.date}
+					</p>
 					<button onClick={() => handleClick(event.id)}>Delete</button>
 				</div>
 			))}
