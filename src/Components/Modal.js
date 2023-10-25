@@ -6,18 +6,22 @@ import "./Modal.css";
 //the method we will use is ReactDOM.createPortal() which takes two arguments: the first argument is the element we want to render and the second argument is the element we want to render the element to.
 // ReactDOM.createPortal(<h1>Modal</h1>, document.getElementById("modal")); // this will render the h1 element to the element with the id of modal which is in the public/index.html file. This will render the h1 element on top of the main app.
 
-export default function Modal({ children, handleClose }) {
+export default function Modal({ children, handleClose, isSalesModal }) {
 	return ReactDOM.createPortal(
 		<div className="modal-backdrop">
 			<div
 				className="modal"
 				style={{
 					border: "4px solid",
-					borderColor: "#ff4500",
+					borderColor: isSalesModal ? "#ff4500" : "#555",
 					textAlign: "center",
 				}}>
 				{children}
-				<button onClick={handleClose}>Close</button>
+				<button
+					onClick={handleClose}
+					className={isSalesModal ? "sales-btn" : ""}>
+					Close
+				</button>
 			</div>
 		</div>,
 		document.body
