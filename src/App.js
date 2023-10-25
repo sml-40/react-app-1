@@ -52,10 +52,6 @@ function App() {
 					subtitle={subtitle}
 				/>
 				<br />
-				<Title
-					title="Another Title"
-					subtitle="Another Subtitle"
-				/>
 
 				{showEvents && ( // this 'logical &&' will only render the hide button if showEvents is true i.e. if the events are being shown
 					<div>
