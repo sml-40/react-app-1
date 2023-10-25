@@ -21,13 +21,14 @@ import NewEventForm from "./Components/NewEventForm";
 function App() {
 	const [showModal, setShowModal] = useState(false); // this will be used to toggle the modal on and off
 	const [showEvents, setShowEvents] = useState(true); // this will be used to toggle the events on and off
-	const [events, setEvents] = useState([
-		{ title: "Mario's birthday bash", id: 1 },
-		{ title: "Bowser's live stream", id: 2 },
-		{ title: "Race on moo moo farm", id: 3 },
-	]);
+	const [events, setEvents] = useState([]);
 
-	// console.log(showEvents); // this will log the value of showEvents to the console
+	const addEvent = (event) => {
+		setEvents((prevEvents) => {
+			return [...prevEvents, event];
+		});
+		setShowModal(false);
+	};
 
 	const handleClick = (id) => {
 		setEvents((prevEvents) => {
@@ -86,7 +87,7 @@ function App() {
 					<Modal
 						handleClose={handleClose}
 						isSalesModal={false}>
-						<NewEventForm />
+						<NewEventForm addEvent={addEvent} />
 					</Modal>
 				)}
 				<div>

@@ -2,7 +2,7 @@ import "./NewEventForm.css";
 
 import React, { useState } from "react";
 
-export default function NewEventForm() {
+export default function NewEventForm({ addEvent }) {
 	const [title, setTitle] = useState("");
 	const [date, setDate] = useState("");
 
@@ -21,6 +21,7 @@ export default function NewEventForm() {
 		};
 		console.log(event);
 		resetForm();
+		addEvent(event);
 	};
 
 	// const handleChange = (event) => {
