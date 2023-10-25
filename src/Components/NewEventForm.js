@@ -6,6 +6,11 @@ export default function NewEventForm() {
 	const [title, setTitle] = useState("");
 	const [date, setDate] = useState("");
 
+	const resetForm = () => {
+		setTitle("");
+		setDate("");
+	};
+
 	// const handleChange = (event) => {
 	// 	setTitle(event.target.value);
 	// };
@@ -17,6 +22,7 @@ export default function NewEventForm() {
 				<input
 					type="text"
 					onChange={(e) => setTitle(e.target.value)}
+					value={title}
 				/>
 			</label>
 			<label>
@@ -24,12 +30,14 @@ export default function NewEventForm() {
 				<input
 					type="date"
 					onChange={(e) => setDate(e.target.value)}
+					value={date}
 				/>
 			</label>
 			<button>Submit</button>
 			<p>
 				Title: {title}, date: {date}
 			</p>
+			<p onClick={resetForm}>Reset the form</p>
 		</form>
 	);
 }
